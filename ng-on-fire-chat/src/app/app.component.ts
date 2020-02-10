@@ -29,10 +29,9 @@ export class AppComponent {
     // console.log('動いてるよ!');
     this.db.collection('messages').add({
 
-      
-      name: this.inputName,
-      body: this.inputMessage,
-      createdAt: new Date() // ここを追加
+        name: this.inputName,
+        body: this.inputMessage,
+        createdAt: new Date() // ここを追加
     });
   }
 
