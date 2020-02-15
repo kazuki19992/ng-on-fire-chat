@@ -1,38 +1,39 @@
 <!-- ヘッダーを使う -->
 <mat-toolbar color="accent">
-  <mat-toolbar-row>
-    <span>NG ON FIRE CHAT!!!</span>
-  </mat-toolbar-row>
+    <mat-toolbar-row>
+        <span>NG ON FIRE CHAT!!!</span>
+    </mat-toolbar-row>
 </mat-toolbar>
 
 <div class="content">
-  <!-- 送信 -->
-  <mat-card style="margin-bottom: 10px;">
-    <mat-card-content>
-      <mat-form-field class="comment-input">
-        <input [(ngModel)]="inputMessage" matInput placeholder="コメントしてください">
-      </mat-form-field>
-      <mat-form-field class="comment-input">
-        <input [(ngModel)]="inputName" matInput placeholder="ユーザー名を入力">
-      </mat-form-field>
-      <button (click)="sendMessage()" mat-raised-button color="accent">送信</button>
-    </mat-card-content>
-  </mat-card>
+    <!-- 送信 -->
+    <mat-card style="margin-bottom: 10px;">
+        <mat-card-content>
+            <mat-form-field class="comment-input">
+                <input [(ngModel)]="inputMessage" matInput placeholder="コメントしてください">
+            </mat-form-field>
+            <mat-form-field class="comment-input">
+                <input [(ngModel)]="inputName" matInput placeholder="ユーザー名 (未入力時は匿名扱いとなります)">
+            </mat-form-field>
+            <button (click)="sendMessage()" mat-raised-button color="accent">送信</button>
 
-  <!-- チャットの内容を表示する枠のテンプレートを使う -->
-  <mat-card>
-    <mat-card-content>
-      <mat-list>
-        <ng-container *ngFor="let message of messages | async; let i = index">
-          <mat-divider *ngIf="i > 0"></mat-divider>
-          <mat-list-item>
-            {{message.body}} / {{message.name}} ({{message.createdAt.toDate() | date: 'yyyy/MM/dd HH:mm:ss'}})
-            <button (click)="deleteMessage(message)" mat-button color="accent">削除</button>
-          </mat-list-item>
-        </ng-container>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- チャットの内容を表示する枠のテンプレートを使う -->
+    <mat-card>
+        <mat-card-content>
+            <mat-list>
+                <ng-container *ngFor="let message of messages | async; let i = index">
+                    <mat-divider *ngIf="i > 0"></mat-divider>
+                    <mat-list-item>
+                        {{message.body}} / {{message.name}} ({{message.createdAt.toDate() | date: 'yyyy/MM/dd HH:mm:ss'}})
+                        <button (click)="deleteMessage(message)" mat-button color="accent">削除</button>
+                    </mat-list-item>
+                </ng-container>
+            </mat-list>
+        </mat-card-content>
+    </mat-card>
 </div>
 
 
