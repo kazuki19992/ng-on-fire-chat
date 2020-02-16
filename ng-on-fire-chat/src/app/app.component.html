@@ -1,20 +1,26 @@
 <!-- ヘッダーを使う -->
-<mat-toolbar color="accent">
+<mat-toolbar color="primary">
     <mat-toolbar-row>
         <span>NG ON FIRE CHAT!!!</span>
     </mat-toolbar-row>
 </mat-toolbar>
 
-<div class="content">
+<ng-container *ngIf="logedIn === true">ログインされました</ng-container>
+<ng-container *ngIf="logedIn === false">ログインしていません</ng-container>
+
+
+
+<!-- ログインが成功したら以下の内容を表示 -->
+<div class="content" *ngIf="logedIn === true">
     <!-- 送信 -->
     <mat-card style="margin-bottom: 10px;">
         <mat-card-content>
             <mat-form-field class="comment-input">
                 <input [(ngModel)]="inputMessage" matInput placeholder="コメントしてください">
             </mat-form-field>
-            <mat-form-field class="comment-input">
-                <input [(ngModel)]="inputName" matInput placeholder="ユーザー名 (未入力時は匿名扱いとなります)">
-            </mat-form-field>
+            <!-- <mat-form-field class="comment-input">
+                <input [(ngModel)]="inputName" matInput placeholder="ユーザー名">
+            </mat-form-field> -->
             <button (click)="sendMessage()" mat-raised-button color="accent">送信</button>
 
         </mat-card-content>
@@ -36,17 +42,20 @@
     </mat-card>
 </div>
 
-
-
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-
+<!-- ログイン前の画面 -->
+<div class="content" *ngIf="logedIn === false">
+    <!-- この中にログインする前のHTMLを書く。ここにログイン用のフォームを作ります。 -->
+    <mat-card style="margin-bottom: 10px;">
+        <mat-card-content>
+            <mat-form-field class="comment-input">
+                <input [(ngModel)]="email" matInput placeholder="Email">
+            </mat-form-field>
+            <mat-form-field class="comment-input">
+                <input [(ngModel)]="password" matInput placeholder="パスワード">
+            </mat-form-field>
+            <button (click)="login()" mat-raised-button color="primary">ログイン</button>
+        </mat-card-content>
+    </mat-card>
+  </div>
 
 <router-outlet></router-outlet>
