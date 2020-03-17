@@ -35,7 +35,7 @@ export class AppComponent {
     sendMessage() {
         // console.log('動いてるよ!');
 
-        // ユーザー名が空欄ならば'Unknown'に置換え
+        
         this.db.collection('messages').add({
                 // name: this.inputName,
                 name: 'カズ之助',
